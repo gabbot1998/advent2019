@@ -31,7 +31,7 @@ def run(par1, par2, intcode):
 
 
 # There are multiple ways of doing this. One way is to force it which should be pretty quick since we only
-# have 100 000 values.
+# have 100 000 possible combinations
 
 for x1 in range(100):
     print(x1)
