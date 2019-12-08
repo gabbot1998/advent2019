@@ -2,10 +2,15 @@ f = open("input.txt", "r")
 intcode = f.read().split(",")
 intcode = list(map(int, intcode))
 
+def getIntcodeOr0(operand, alpha):
+    if alpha == 0:
+        return intcode[operand]
+    else:
+        return operand
+
 i = 0
 print(intcode)
 while(True):
-            print("entered the while")
 
 
             opcode = intcode[i]
@@ -59,8 +64,8 @@ while(True):
 
 
             if E == 1:
-                op1 = intcode[operand_1] if C == 0 else operand_1
-                op2 = intcode[operand_2] if B == 0 else operand_2
+                op1 = getIntcodeOr0(operand_1, C)
+                op2 = getIntcodeOr0(operand_2, B)
 
                 intcode[res] = int(op1) + int(op2)
                 print("operand_1: " + str(operand_1))
@@ -73,8 +78,8 @@ while(True):
 
 
             elif E == 2:
-                op1 = intcode[operand_1] if C == 0 else operand_1
-                op2 = intcode[operand_2] if B == 0 else operand_2
+                op1 = getIntcodeOr0(operand_1, C)
+                op2 = getIntcodeOr0(operand_2, B)
 
                 intcode[res] = op1 * op2
                 print("operand_1: " + str(operand_1))
@@ -90,14 +95,14 @@ while(True):
                 i+=2
 
             elif E == 4:
-                op1 = intcode[operand_1] if C == 0 else operand_1
+                op1 = getIntcodeOr0(operand_1, C)
 
                 print("the diagnostics code was:  " + str(op1))
                 i+=2
 
             elif E == 5:
-                op1 = intcode[operand_1] if C == 0 else operand_1
-                op2 = intcode[operand_2] if B == 0 else operand_2
+                op1 = getIntcodeOr0(operand_1, C)
+                op2 = getIntcodeOr0(operand_2, B)
 
                 if int(op1) != 0:
                     i = int(op2)
@@ -105,8 +110,8 @@ while(True):
                     i += 3
 
             elif E == 6:
-                op1 = intcode[operand_1] if C == 0 else operand_1
-                op2 = intcode[operand_2] if B == 0 else operand_2
+                op1 = getIntcodeOr0(operand_1, C)
+                op2 = getIntcodeOr0(operand_2, B)
 
                 if int(op1) == 0:
                     i = int(op2)
@@ -114,8 +119,8 @@ while(True):
                     i += 3
 
             elif E == 7:
-                op1 = intcode[operand_1] if C == 0 else operand_1
-                op2 = intcode[operand_2] if B == 0 else operand_2
+                op1 = getIntcodeOr0(operand_1, C)
+                op2 = getIntcodeOr0(operand_2, B)
 
                 if int(op1) < int(op2):
                     intcode[res] = 1
@@ -124,8 +129,8 @@ while(True):
                 i += 4
 
             elif E == 8:
-                op1 = intcode[operand_1] if C == 0 else operand_1
-                op2 = intcode[operand_2] if B == 0 else operand_2
+                op1 = getIntcodeOr0(operand_1, C)
+                op2 = getIntcodeOr0(operand_2, B)
 
                 if int(op1) == int(op2):
                     intcode[res] = 1
