@@ -22,15 +22,33 @@ total = [0]
 
 def assembleOrbits(body, i, total):
     orbitees = []
-    print(body)
+    #print(body)
     for orbit in orbits:
         if orbit[0] == body:
             total[0] += i
-            print(i)
-            orbitees.append([body ,assembleOrbits(orbit[1], i + 1, total)])
+            # print(i)
+            orbitees.append(body)
+            orbitees.append(assembleOrbits(orbit[1], i + 1, total))
+    if orbitees == []:
+        orbitees.append(body)
+        orbitees.append([])
     return orbitees
 
 finalTree = assembleOrbits("COM", 1, total)
 
-print(finalTree)
-print(total[0])
+
+# To find the two points we want to record every step we take after one has been found.
+# It does not matter in which way we are stepping
+
+
+def traverseTree(tree, i):
+    print(tree, len(tree),len(tree[1]))
+    if len(tree[1]) != 0:
+        tree.pop(0)
+        print(tree)
+        for subTree in tree:
+            traverseTree(subTree, i)
+
+
+traverseTree(finalTree, 0)
+#print(total[0])
